@@ -163,7 +163,7 @@ section.tight { padding: 56px 0; }
   color: var(--navy);
   flex-shrink: 0;
 }
-.nav-brand img { width: 48px; height: 48px; object-fit: contain; }
+.nav-brand img { width: 72px; height: 72px; object-fit: contain; }
 .nav-brand-text {
   font-family: var(--font-display);
   font-weight: 700;
