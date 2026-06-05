@@ -879,7 +879,8 @@ section.tight { padding: 56px 0; }
   .program-detail.reverse > :first-child { order: initial; }
 }
 .program-detail-visual {
-  aspect-ratio: 1 / 0.95;
+  height: 440px;
+  width: 100%;
   border-radius: var(--r-xl);
   position: relative;
   overflow: hidden;
