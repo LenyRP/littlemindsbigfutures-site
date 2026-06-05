@@ -523,25 +523,21 @@ section.tight { padding: 56px 0; }
 .service-card {
   background: var(--bg);
   border-radius: var(--r-lg);
-  overflow: hidden;
+  padding: 36px 30px;
   border: 1px solid var(--border);
   transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
 }
 .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.service-card-img {
-  height: 200px;
-  overflow: hidden;
+.service-card .icon-blob {
+  width: 64px; height: 64px;
+  border-radius: var(--r-md);
+  display: grid; place-items: center;
+  margin-bottom: 20px;
+  color: white;
 }
-.service-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-.service-card:hover .service-card-img img { transform: scale(1.04); }
-.service-card-body {
-  padding: 28px 28px 32px;
-}
+.service-card:nth-child(1) .icon-blob { background: var(--teal); }
+.service-card:nth-child(2) .icon-blob { background: var(--coral); }
+.service-card:nth-child(3) .icon-blob { background: var(--marigold); color: var(--navy); }
 .service-card h3 { margin-bottom: 12px; }
 .service-card p { color: var(--text-muted); margin: 0; }
 
@@ -579,20 +575,18 @@ section.tight { padding: 56px 0; }
 .program-card.soaring   { border-color: var(--marigold); }
 
 .program-card .program-illustration {
-  height: 180px;
-  overflow: hidden;
+  height: 140px;
+  display: grid;
+  place-items: center;
   position: relative;
 }
 .program-card.jumpstart .program-illustration { background: linear-gradient(160deg, var(--sage-soft) 0%, #d8e7d3 100%); }
 .program-card.leaping   .program-illustration { background: linear-gradient(160deg, var(--teal-soft) 0%, #c6e6e3 100%); }
 .program-card.soaring   .program-illustration { background: linear-gradient(160deg, var(--marigold-soft) 0%, #f9dca2 100%); }
-.program-illustration img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease-out);
+.program-illustration .emoji-art {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
 }
-.program-card:hover .program-illustration img { transform: scale(1.04); }
 
 .program-card-body {
   padding: 24px 24px 28px;
