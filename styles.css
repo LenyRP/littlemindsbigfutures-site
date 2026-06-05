@@ -442,7 +442,7 @@ section.tight { padding: 56px 0; }
   color: var(--teal-deep);
 }
 .hero-card-2 {
-  top: 38%; right: 0;
+  top: 58%; right: 0;
   transform: rotate(3deg);
   background: var(--coral-soft);
   color: var(--coral);
