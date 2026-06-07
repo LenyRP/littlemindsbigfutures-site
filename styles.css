@@ -518,7 +518,8 @@ section.tight { padding: 56px 0; }
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
-@media (max-width: 920px) { .services-grid { grid-template-columns: 1fr; } }
+@media (max-width: 920px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
 
 .service-card {
   background: var(--bg);
@@ -636,7 +637,8 @@ section.tight { padding: 56px 0; }
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
-@media (max-width: 920px) { .testimonials-grid { grid-template-columns: 1fr; } }
+@media (max-width: 920px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; } }
 
 .testimonial {
   background: var(--ivory-soft);
@@ -698,7 +700,9 @@ section.tight { padding: 56px 0; }
   position: relative;
   overflow: hidden;
   max-width: var(--container);
-  margin: 0 24px;
+  margin: 0 auto;
+  /* side padding keeps the card off viewport edges on wide screens */
+  width: calc(100% - 48px);
 }
 .cta-inner h2 { color: var(--ivory); margin-bottom: 16px; }
 .cta-inner .handwritten { color: var(--marigold); }
@@ -719,7 +723,7 @@ section.tight { padding: 56px 0; }
 .cta-inner .btn-ghost:hover { background: var(--ivory); color: var(--navy); }
 
 @media (max-width: 720px) {
-  .cta-inner { padding: 56px 28px; margin: 0 16px; }
+  .cta-inner { padding: 56px 28px; width: calc(100% - 32px); }
   .cta-block { padding: 64px 0; }
 }
 
