@@ -358,22 +358,51 @@
     }
   });
 
-  document.getElementById('consultation-form-el').addEventListener('submit', function(e) {
+  document.getElementById('consultation-form-el').addEventListener('submit', async function(e) {
     e.preventDefault();
     if (!this.checkValidity()) { this.reportValidity(); return; }
-    document.getElementById('form-container').innerHTML = `
-      <div class="form-success">
-        <div class="success-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+
+    var form = this;
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    function showSuccess() {
+      document.getElementById('form-container').innerHTML = `
+        <div class="form-success">
+          <div class="success-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>You're all set!</h3>
+          <p>Thank you — I'll be in touch within one business day to schedule our free conversation.</p>
+          <p style="margin-top:8px;">Or reach out directly:<br/>
+            <a href="tel:+16155926584" style="font-family: var(--font-display); font-weight:700; font-size:1.1rem; color: var(--teal-deep);">(615) 592-6584</a>
+          </p>
         </div>
-        <h3>You're all set!</h3>
-        <p>Thank you — I'll be in touch within one business day to schedule our free conversation.</p>
-        <p style="margin-top:8px;">Or reach out directly:<br/>
-          <a href="tel:+16155926584" style="font-family: var(--font-display); font-weight:700; font-size:1.1rem; color: var(--teal-deep);">(615) 592-6584</a>
-        </p>
-      </div>
-    `;
-    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      `;
+      document.getElementById('form-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    try {
+      var res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+      });
+      if (!res.ok) throw new Error('submit failed');
+      showSuccess();
+    } catch (err) {
+      if (btn) { btn.disabled = false; btn.innerHTML = btnText; }
+      var errEl = document.getElementById('form-error');
+      if (!errEl) {
+        errEl = document.createElement('p');
+        errEl.id = 'form-error';
+        errEl.setAttribute('role', 'alert');
+        errEl.style.cssText = 'color:#b3261e; font-size:0.9rem; margin-top:14px; text-align:center;';
+        form.appendChild(errEl);
+      }
+      errEl.innerHTML = 'Sorry — something went wrong sending your request. Please call or text <a href="tel:+16155926584"><strong>(615) 592-6584</strong></a> or email <a href="mailto:leslie@littlemindsbigfutures.com">leslie@littlemindsbigfutures.com</a>.';
+    }
   });
 </script>
 
