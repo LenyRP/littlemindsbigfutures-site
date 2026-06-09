@@ -1,9 +1,9 @@
 // Cloudflare Worker — Little Minds, Big Futures
 //
 // Serves the static site (via the ASSETS binding) and handles POST /api/lead:
-// creates/updates a GoHighLevel contact on Leslie's subaccount and attaches the
-// child details as a note. Creating the contact with the `new-inquiry` tag fires
-// the "Lead Inquiry Auto-Reply" workflow (parent email/SMS + internal alert).
+// creates/updates a GoHighLevel contact on Leslie's subaccount, maps child details
+// into structured custom fields, and attaches a note as backup.
+// Creating the contact with the `new-inquiry` tag fires the Lead Inquiry Auto-Reply workflow.
 //
 // Secret: env.GHL_PIT — the Little Minds Private Integration token. Set it under
 // the Worker's Settings → Variables and secrets (as an encrypted secret). Never commit it.
@@ -12,11 +12,24 @@ const GHL_LOCATION_ID = "LB9ohDvUS0nHKwJ9w8wr"; // Little Minds, Big Futures
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
 
+// GHL custom field IDs — contact model, Little Minds subaccount
+const FIELD_STUDENT_NAME = "hCvYhnw11tKc2t8e1p3v";
+const FIELD_STUDENT_AGE  = "LUO3wWfw8X4yThgUY0vS";
+const FIELD_PROGRAM      = "aAavyXaaNan5Vz95dycw";
+const FIELD_LEARNING_GOALS = "yo8GeHPO1rCaSJGvqXbf";
+
+// Maps form program keys → GHL picklist labels
+const PROGRAM_FIELD_VALUES = {
+  jumpstart: "Jumpstart (Ages 3-4)",
+  leaping:   "Leaping to Literacy (Ages 5-6)",
+  soaring:   "Soaring Into Success (Ages 7-8)",
+};
+
 const PROGRAM_LABELS = {
   jumpstart: "Jumpstart · Kindergarten Readiness (Ages 3–4)",
-  leaping: "Leaping · Early Literacy (Ages 5–6)",
-  soaring: "Soaring Into Success (Ages 7–8)",
-  other: "Multiple kids / Other",
+  leaping:   "Leaping · Early Literacy (Ages 5–6)",
+  soaring:   "Soaring Into Success (Ages 7–8)",
+  other:     "Multiple kids / Other",
 };
 
 export default {
@@ -32,12 +45,6 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
-
-// TODO (enhancement): once the Little Minds custom-field IDs are pulled from the
-// subaccount, map childName→Student Name, childAge→Student Age, program→Program,
-// story→Learning Goals via `customFields: [{ id, field_value }]` in the upsert.
-// Until then child details ride in the note below so nothing is lost, and the
-// upsert stays minimal so an unknown field ID can never block contact creation.
 
 async function handleLead(request, env) {
   if (!env.GHL_PIT) {
@@ -81,6 +88,14 @@ async function handleLead(request, env) {
     Accept: "application/json",
   };
 
+  // Build custom fields — only include fields that have values
+  const customFields = [];
+  if (childName) customFields.push({ id: FIELD_STUDENT_NAME, field_value: childName });
+  if (childAge)  customFields.push({ id: FIELD_STUDENT_AGE,  field_value: Number(childAge) || childAge });
+  if (story)     customFields.push({ id: FIELD_LEARNING_GOALS, field_value: story });
+  const programFieldValue = PROGRAM_FIELD_VALUES[program];
+  if (programFieldValue) customFields.push({ id: FIELD_PROGRAM, field_value: programFieldValue });
+
   // 1) Upsert the contact — fires the Lead Inquiry Auto-Reply workflow.
   let contactId;
   try {
@@ -96,6 +111,7 @@ async function handleLead(request, env) {
         phone: phone || undefined,
         source: "Website Contact Form",
         tags: ["new-inquiry", "website-lead"],
+        customFields: customFields.length ? customFields : undefined,
       }),
     });
     if (!res.ok) {
