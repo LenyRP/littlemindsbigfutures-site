@@ -214,6 +214,19 @@ section.tight { padding: 56px 0; }
   transition: background var(--dur) var(--ease-out);
 }
 .nav-menu-btn:hover { background: var(--teal-soft); }
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--teal-deep, #1f6f6b);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 6px 4px;
+}
+.nav-phone:hover { text-decoration: underline; }
 
 @media (max-width: 860px) {
   .nav-links {
@@ -231,6 +244,7 @@ section.tight { padding: 56px 0; }
   }
   .nav-links.open { display: flex; }
   .nav-cta .btn { display: none; }
+  .nav-phone { display: none; }
   .nav-menu-btn { display: flex; }
 }
 
@@ -256,6 +270,45 @@ section.tight { padding: 56px 0; }
 }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
+
+/* Keyboard-visible focus (accessibility) */
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* Sticky mobile "Call Leslie" bar — hidden on desktop, fixed bottom on mobile */
+.mobile-call-bar { display: none; }
+@media (max-width: 860px) {
+  .mobile-call-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    padding: 14px 16px;
+    background: var(--teal, #2E7D7B);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.18);
+  }
+  /* keep the fixed bar from covering page-bottom content */
+  body { padding-bottom: 60px; }
+}
 
 .btn-primary {
   background: var(--coral);

@@ -2,67 +2,133 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://littlemindsbigfutures.com/</loc>
-    <lastmod>2026-06-06</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/programs.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/programs</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/kindergarten-readiness.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/kindergarten-readiness</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/preschool-tutoring.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/preschool-tutoring</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/early-elementary-tutoring.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/early-elementary-tutoring</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/contact.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/kindergarten-readiness-checklist</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/about.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/contact</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/about</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/blog/kindergarten-readiness-checklist.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/privacy</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/terms</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/kindergarten-readiness-checklist</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/locations/franklin.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/blog/what-order-to-teach-phonics</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/early-math-skills-before-kindergarten</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/how-to-read-aloud-to-your-child</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/signs-your-child-is-struggling-to-read</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/prevent-summer-learning-loss</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/how-to-teach-a-child-to-read</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/choosing-a-reading-tutor-williamson-county</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/locations/franklin</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/locations/brentwood.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/locations/brentwood</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://littlemindsbigfutures.com/locations/nolensville.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://littlemindsbigfutures.com/locations/nolensville</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

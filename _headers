@@ -1,0 +1,13 @@
+# Cloudflare static-asset cache rules.
+# Static assets keep non-hashed filenames, so use a 1-day cache with a 7-day
+# stale-while-revalidate window rather than "immutable" — edits still surface
+# within a day while repeat visits stay fast.
+
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/styles.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/*.pdf
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

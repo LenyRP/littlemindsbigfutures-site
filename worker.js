@@ -41,10 +41,30 @@ export default {
       }
       return handleLead(request, env);
     }
-    // Everything else → static assets (the website).
-    return env.ASSETS.fetch(request);
+    // Everything else → static assets (the website), with sane caching.
+    const res = await env.ASSETS.fetch(request);
+    return withCacheHeaders(url, res);
   },
 };
+
+// The ASSETS binding serves everything with max-age=0 by default, which disables
+// browser caching and tanks repeat-visit performance. Add reasonable cache-control:
+// long-lived for static media/styles, short for HTML so content edits still surface.
+function withCacheHeaders(url, res) {
+  if (!res || res.status >= 400) return res;
+  const path = url.pathname.toLowerCase();
+  let cc;
+  if (/\.(png|jpe?g|webp|gif|svg|ico|woff2?|ttf|otf|pdf)$/.test(path)) {
+    cc = "public, max-age=86400, stale-while-revalidate=604800"; // 1 day (non-hashed names)
+  } else if (/\.(css|js)$/.test(path)) {
+    cc = "public, max-age=86400, stale-while-revalidate=604800";
+  } else {
+    cc = "public, max-age=300, must-revalidate"; // HTML / clean URLs
+  }
+  const out = new Response(res.body, res);
+  out.headers.set("cache-control", cc);
+  return out;
+}
 
 async function handleLead(request, env) {
   if (!env.GHL_PIT) {
@@ -65,6 +85,13 @@ async function handleLead(request, env) {
   }
 
   const str = (v) => (v == null ? "" : String(v).trim());
+
+  // Honeypot: a hidden "company" field that real users never see/fill. If it has
+  // a value, it's a bot — return a fake success so the bot moves on, skip GHL.
+  if (str(data.company)) {
+    return json({ ok: true });
+  }
+
   const parentName = str(data.parentName);
   const email = str(data.email);
   const phone = str(data.phone);
@@ -76,6 +103,10 @@ async function handleLead(request, env) {
   if (!parentName || !email) {
     return json({ ok: false, error: "missing_required" }, 422);
   }
+
+  // Lead magnet downloads (e.g. the Kindergarten Readiness Checklist) are tagged
+  // separately so Leslie can tell a checklist subscriber from a consult request.
+  const isLeadMagnet = str(data.formType) === "lead-magnet";
 
   const parts = parentName.split(/\s+/);
   const firstName = parts.shift();
@@ -109,8 +140,10 @@ async function handleLead(request, env) {
         name: parentName,
         email,
         phone: phone || undefined,
-        source: "Website Contact Form",
-        tags: ["new-inquiry", "website-lead"],
+        source: isLeadMagnet ? "Kindergarten Checklist Download" : "Website Contact Form",
+        tags: isLeadMagnet
+          ? ["website-lead", "lead-magnet", "checklist-download"]
+          : ["new-inquiry", "website-lead"],
         customFields: customFields.length ? customFields : undefined,
       }),
     });

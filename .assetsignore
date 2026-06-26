@@ -1,4 +1,16 @@
 worker.js
+worker.js.map
+*.map
 wrangler.toml
 .assetsignore
 functions/
+.git
+.git/**
+.wrangler
+.wrangler/**
+.claude-flow
+.claude-flow/**
+.claude
+.claude/**
+node_modules
+node_modules/**
