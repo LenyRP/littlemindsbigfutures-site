@@ -12,6 +12,20 @@ const GHL_LOCATION_ID = "LB9ohDvUS0nHKwJ9w8wr"; // Little Minds, Big Futures
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
 
+// Branded short links → GHL booking calendars. Lets SMS/email use clean on-brand
+// URLs (littlemindsbigfutures.com/book) instead of raw leadconnector links —
+// prettier and better for SMS deliverability. Add/repoint calendars here.
+const BOOKING_LINKS = {
+  // Free consultation calendar
+  "/book":       "https://api.leadconnectorhq.com/widget/booking/0d60bsnGsPQOfypyORK7",
+  "/schedule":   "https://api.leadconnectorhq.com/widget/booking/0d60bsnGsPQOfypyORK7",
+  "/consult":    "https://api.leadconnectorhq.com/widget/booking/0d60bsnGsPQOfypyORK7",
+  "/booking":    "https://api.leadconnectorhq.com/widget/booking/0d60bsnGsPQOfypyORK7",
+  // Reading assessment calendar
+  "/assessment": "https://api.leadconnectorhq.com/widget/booking/CHtiOArmZ1iBRP2wDGEx",
+  "/assess":     "https://api.leadconnectorhq.com/widget/booking/CHtiOArmZ1iBRP2wDGEx",
+};
+
 // GHL custom field IDs — contact model, Little Minds subaccount
 const FIELD_STUDENT_NAME = "hCvYhnw11tKc2t8e1p3v";
 const FIELD_STUDENT_AGE  = "LUO3wWfw8X4yThgUY0vS";
@@ -35,6 +49,11 @@ const PROGRAM_LABELS = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Branded booking short links → 302 to the GHL calendar (trailing slash tolerant).
+    const bookingDest = BOOKING_LINKS[url.pathname.replace(/\/$/, "").toLowerCase()];
+    if (bookingDest) {
+      return Response.redirect(bookingDest, 302);
+    }
     if (url.pathname === "/api/lead") {
       if (request.method !== "POST") {
         return json({ ok: false, error: "method_not_allowed" }, 405);
