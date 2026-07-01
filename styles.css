@@ -1084,3 +1084,139 @@ summary:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =========================================================
+   Pricing page
+   ========================================================= */
+.pricing-grid { align-items: stretch; }
+.price-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.price-card .icon-blob { width: 60px; height: 60px; }
+.price-kicker {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+.price-card:nth-child(2) .price-kicker { color: var(--coral); }
+.price-card:nth-child(3) .price-kicker { color: #C68A21; }
+.price-amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  line-height: 1;
+  color: var(--navy);
+  margin: 6px 0 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.price-amount-sm { font-size: clamp(1.8rem, 4vw, 2.3rem); }
+.price-unit {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.price-note { color: var(--text-muted); margin: 0 0 20px; line-height: 1.55; }
+.price-note strong { color: var(--navy); }
+.price-includes {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+.price-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.price-includes li svg { color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+.price-includes li strong { color: var(--coral); }
+.btn-block { width: 100%; text-align: center; margin-top: auto; }
+
+.price-card-featured {
+  border: 2px solid var(--coral);
+  box-shadow: var(--shadow-md);
+}
+.price-flag {
+  position: absolute;
+  top: 18px;
+  right: -34px;
+  transform: rotate(45deg);
+  background: var(--coral);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 42px;
+  box-shadow: var(--shadow-sm);
+}
+.price-fineprint {
+  max-width: 780px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Referral banner */
+.referral-banner {
+  background: var(--navy);
+  border-radius: var(--r-lg);
+  padding: 40px 44px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.referral-banner::before {
+  content: "";
+  position: absolute;
+  top: -80px; right: -60px;
+  width: 260px; height: 260px;
+  background: rgba(244, 180, 60, 0.18);
+  border-radius: 50%;
+}
+.referral-icon {
+  width: 76px; height: 76px;
+  border-radius: var(--r-md);
+  background: var(--marigold);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.referral-copy { position: relative; }
+.referral-copy h2 { color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin: 4px 0 8px; }
+.referral-copy p { color: rgba(250,245,236,0.85); margin: 0; max-width: 560px; }
+.referral-copy p strong { color: var(--marigold); }
+.referral-cta { position: relative; }
+
+@media (max-width: 860px) {
+  .referral-banner { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 36px 28px; }
+  .referral-copy p { margin: 0 auto; }
+}
