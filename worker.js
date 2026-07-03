@@ -49,6 +49,16 @@ const PROGRAM_LABELS = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Canonical origin: force https + apex (drop www). Any http:// or www. request
+    // 301s to https://littlemindsbigfutures.com/<same path+query>. Collapses the 3
+    // duplicate URL variants Google was flagging as "Alternate page with canonical".
+    const CANONICAL_HOST = "littlemindsbigfutures.com";
+    if (url.protocol !== "https:" || url.hostname !== CANONICAL_HOST) {
+      url.protocol = "https:";
+      url.hostname = CANONICAL_HOST;
+      url.port = "";
+      return Response.redirect(url.toString(), 301);
+    }
     // Branded booking short links → 302 to the GHL calendar (trailing slash tolerant).
     const bookingDest = BOOKING_LINKS[url.pathname.replace(/\/$/, "").toLowerCase()];
     if (bookingDest) {
