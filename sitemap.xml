@@ -169,6 +169,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://littlemindsbigfutures.com/locations/arrington</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/locations/college-grove</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/locations/chapel-hill</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://littlemindsbigfutures.com/blog/why-a-love-of-learning-matters-more-than-grades</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>yearly</changefreq>

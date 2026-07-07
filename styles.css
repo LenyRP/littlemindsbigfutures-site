@@ -436,6 +436,17 @@ summary:focus-visible {
   color: var(--coral);
   font-style: italic;
 }
+.hero-h1-kw {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-muted, #5b6b73);
+  letter-spacing: 0.01em;
+  margin-top: 16px;
+  max-width: 34ch;
+}
 .hero-tagline-ribbon {
   background: var(--marigold);
   color: var(--navy);
