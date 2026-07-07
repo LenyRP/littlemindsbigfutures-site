@@ -68,8 +68,32 @@
   </url>
   <url>
     <loc>https://littlemindsbigfutures.com/blog/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-07-07</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/your-childs-favorite-toy-is-you</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/talking-to-your-baby-serve-and-return</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/how-to-read-books-at-every-age</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://littlemindsbigfutures.com/blog/alphabet-bingo-games</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
