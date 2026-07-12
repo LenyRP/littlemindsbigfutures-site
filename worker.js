@@ -171,8 +171,8 @@ async function handleLead(request, env) {
         phone: phone || undefined,
         source: isLeadMagnet ? "Kindergarten Checklist Download" : "Website Contact Form",
         tags: isLeadMagnet
-          ? ["website-lead", "lead-magnet", "checklist-download"]
-          : ["new-inquiry", "website-lead"],
+          ? ["website-lead", "lead-magnet", "checklist-download", "source-checklist"]
+          : ["new-inquiry", "website-lead", "source-webform"],
         customFields: customFields.length ? customFields : undefined,
       }),
     });
