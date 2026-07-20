@@ -59,6 +59,15 @@ export default {
       url.port = "";
       return Response.redirect(url.toString(), 301);
     }
+    // Legacy .html URLs → 301 to the clean extensionless equivalent. The ASSETS
+    // binding already 307s these; a 301 is the explicit permanent signal Google
+    // consolidates faster. /index.html (at any depth) drops to its directory.
+    if (url.pathname.endsWith(".html")) {
+      url.pathname = url.pathname.endsWith("/index.html")
+        ? url.pathname.slice(0, -"index.html".length)
+        : url.pathname.slice(0, -".html".length);
+      return Response.redirect(url.toString(), 301);
+    }
     // Branded booking short links → 302 to the GHL calendar (trailing slash tolerant).
     const bookingDest = BOOKING_LINKS[url.pathname.replace(/\/$/, "").toLowerCase()];
     if (bookingDest) {

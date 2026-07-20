@@ -802,7 +802,7 @@ summary:focus-visible {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1.1fr 0.9fr 1fr;
   gap: 48px;
   margin-bottom: 48px;
 }
