@@ -116,3 +116,26 @@ The problems are **concentrated and cheap to fix**:
 ---
 
 *Implementation status tracked in the commit that accompanies this file.*
+
+---
+
+# Pass 2 — 2026-07-16 (implemented + deployed)
+
+Pass-1 P1/P2 items were verified shipped before this pass (metas trimmed, FAQ schema on locations/services, 6 location pages live, thin money posts expanded).
+
+## Implemented this pass
+1. **Internal URL normalization** — 1,699 hrefs rewritten from relative `.html` style to root-absolute extensionless (`/about`, `/blog/<slug>`). Live `.html` URLs were 307-redirecting; internal clicks/crawls no longer pay the hop. (Gotcha found+fixed: the rewrite briefly broke a JS template-literal `href="${PDF_URL}"` on the checklist page.)
+2. **Titles ≤60, keyword-first, brand suffix dropped** — 15 money/location titles hand-rewritten; blog suffix `| Little Minds, Big Futures` stripped; 15 long blog titles hand-trimmed.
+3. **Meta descriptions** — 15 pages >160 chars trimmed to ≤160.
+4. **H1 keywords** — about, early-elementary, pricing, programs got `.hero-h1-kw` keyword sublines (homepage pattern).
+5. **Thin location pages expanded** — brentwood 551→783, franklin 558→789, nolensville 538→771 words; +1 FAQ each (mirrored in JSON-LD), neighborhood/school detail, "Helpful reads" blog links.
+6. **Thin blog posts expanded + FAQPage schema** — prevent-summer-learning-loss 415→996, how-to-read-aloud 530→1092, early-math-skills 639→1124, kindergarten-readiness-checklist 667→1293 article words; 3–4 FAQs each, third JSON-LD block added.
+7. **Internal link mesh** — 16 contextual in-body links: every blog post now ≥2 in-main inbound (was 12 posts at 1); homepage/kindergarten-readiness/about/pricing now link contextually into blog.
+8. **blog/index schema** — Blog + BreadcrumbList JSON-LD added (had none).
+9. **Fixed invalid JSON-LD** — learning-through-play post had `&quot;` inside JSON (2 blocks unparseable).
+10. **Sitemap** — all 61 lastmod → 2026-07-16. Deployed via `npx wrangler deploy`; live-verified (200s, fresh titles, new content, schema present).
+
+## Still open (not code)
+- Google Search Console + Bing Webmaster: submit sitemap, monitor.
+- GBP reviews.
+- OG/twitter titles still carry old long titles on some pages (cosmetic, non-ranking).
