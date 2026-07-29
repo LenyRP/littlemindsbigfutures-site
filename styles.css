@@ -228,7 +228,10 @@ section.tight { padding: 56px 0; }
 }
 .nav-phone:hover { text-decoration: underline; }
 
-@media (max-width: 860px) {
+/* The link list collapses to a hamburger as soon as the seven items stop
+   fitting alongside the logo, phone, and CTA (measured: needs ~1184px).
+   Phone + CTA stay visible down to true mobile — see the 860px block below. */
+@media (max-width: 1240px) {
   .nav-links {
     display: none;
     position: absolute;
@@ -243,9 +246,12 @@ section.tight { padding: 56px 0; }
     gap: 2px;
   }
   .nav-links.open { display: flex; }
+  .nav-menu-btn { display: flex; }
+}
+
+@media (max-width: 860px) {
   .nav-cta .btn { display: none; }
   .nav-phone { display: none; }
-  .nav-menu-btn { display: flex; }
 }
 
 /* =========================================================
