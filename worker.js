@@ -12,10 +12,15 @@ const GHL_LOCATION_ID = "LB9ohDvUS0nHKwJ9w8wr"; // Little Minds, Big Futures
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
 
-// Branded short links → GHL booking calendars. Lets SMS/email use clean on-brand
-// URLs (littlemindsbigfutures.com/book) instead of raw leadconnector links —
-// prettier and better for SMS deliverability. Add/repoint calendars here.
-const BOOKING_LINKS = {
+// Branded short links → GHL calendars and forms. Lets SMS/email use clean
+// on-brand URLs (littlemindsbigfutures.com/book) instead of raw leadconnector
+// links — prettier and better for SMS deliverability.
+//
+// This is also the single place a destination is defined. GHL workflow emails
+// point at these paths, so repointing a calendar or rebuilding a form is a
+// one-line change here rather than an edit inside every workflow that links to
+// it. Add/repoint destinations below.
+const SHORT_LINKS = {
   // Free consultation calendar
   "/book":       "https://api.leadconnectorhq.com/widget/booking/0d60bsnGsPQOfypyORK7",
   "/schedule":   "https://api.leadconnectorhq.com/widget/booking/0d60bsnGsPQOfypyORK7",
@@ -24,6 +29,11 @@ const BOOKING_LINKS = {
   // Reading assessment calendar
   "/assessment": "https://api.leadconnectorhq.com/widget/booking/CHtiOArmZ1iBRP2wDGEx",
   "/assess":     "https://api.leadconnectorhq.com/widget/booking/CHtiOArmZ1iBRP2wDGEx",
+  // Student intake form — sent by the Student Onboarding workflow after a
+  // family enrols. Matches on the contact's email, so it updates the existing
+  // contact rather than creating a duplicate.
+  "/intake":        "https://api.leadconnectorhq.com/widget/form/gIIiSeUiluyL6zFqVvH1",
+  "/student-intake": "https://api.leadconnectorhq.com/widget/form/gIIiSeUiluyL6zFqVvH1",
 };
 
 // GHL custom field IDs — contact model, Little Minds subaccount
@@ -68,10 +78,10 @@ export default {
         : url.pathname.slice(0, -".html".length);
       return Response.redirect(url.toString(), 301);
     }
-    // Branded booking short links → 302 to the GHL calendar (trailing slash tolerant).
-    const bookingDest = BOOKING_LINKS[url.pathname.replace(/\/$/, "").toLowerCase()];
-    if (bookingDest) {
-      return Response.redirect(bookingDest, 302);
+    // Branded short links → 302 to the GHL calendar/form (trailing slash tolerant).
+    const shortLinkDest = SHORT_LINKS[url.pathname.replace(/\/$/, "").toLowerCase()];
+    if (shortLinkDest) {
+      return Response.redirect(shortLinkDest, 302);
     }
     if (url.pathname === "/api/lead") {
       if (request.method !== "POST") {
