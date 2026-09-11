@@ -29,11 +29,19 @@ const SHORT_LINKS = {
   // Reading assessment calendar
   "/assessment": "https://api.leadconnectorhq.com/widget/booking/CHtiOArmZ1iBRP2wDGEx",
   "/assess":     "https://api.leadconnectorhq.com/widget/booking/CHtiOArmZ1iBRP2wDGEx",
+  // Results-conversation calendar (30 min, in studio). Rebuilt 2026-09-11 after the
+  // original calendar was deleted; WF-5 emails/SMS point here so a calendar swap
+  // is a one-line change.
+  "/results":              "https://api.leadconnectorhq.com/widget/booking/npVfGJnlskYDoZ9wpru3",
+  "/results-conversation": "https://api.leadconnectorhq.com/widget/booking/npVfGJnlskYDoZ9wpru3",
   // Student intake form — sent by the Student Onboarding workflow after a
   // family enrols. Matches on the contact's email, so it updates the existing
   // contact rather than creating a duplicate.
   "/intake":        "https://api.leadconnectorhq.com/widget/form/gIIiSeUiluyL6zFqVvH1",
   "/student-intake": "https://api.leadconnectorhq.com/widget/form/gIIiSeUiluyL6zFqVvH1",
+  // Google review page — sent in review-request texts/emails
+  "/review":        "https://search.google.com/local/writereview?placeid=ChIJEeTpUo3pvKwRD9KUafF3JaQ",
+  "/reviews":       "https://search.google.com/local/writereview?placeid=ChIJEeTpUo3pvKwRD9KUafF3JaQ",
 };
 
 // GHL custom field IDs — contact model, Little Minds subaccount
