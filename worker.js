@@ -34,6 +34,10 @@ const SHORT_LINKS = {
   // is a one-line change.
   "/results":              "https://api.leadconnectorhq.com/widget/booking/npVfGJnlskYDoZ9wpru3",
   "/results-conversation": "https://api.leadconnectorhq.com/widget/booking/npVfGJnlskYDoZ9wpru3",
+  // Weekly tutoring-session calendar — Leslie texts this to enrolled families
+  // to book their recurring slot.
+  "/sessions": "https://api.leadconnectorhq.com/widget/booking/fXrCkZeK0XJARcSe66Ar",
+  "/session":  "https://api.leadconnectorhq.com/widget/booking/fXrCkZeK0XJARcSe66Ar",
   // Student intake form — sent by the Student Onboarding workflow after a
   // family enrols. Matches on the contact's email, so it updates the existing
   // contact rather than creating a duplicate.
